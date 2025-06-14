@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Bienvenue sur mon site hébergé sur GitHub Pages</h1>
-
-    <h2>Contenu de mon serveur :</h2>
     <div id="result">Chargement...</div>
 
     <script>
-        fetch("https://lesterterrois.myartsonline.com/index.php")
+        fetch("https://lesterterrois.myartsonline.com/api.php")
             .then(response => response.text())
             .then(data => document.getElementById("result").innerHTML = data)
             .catch(error => console.error("Erreur :", error));
