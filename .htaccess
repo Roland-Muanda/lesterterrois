@@ -1,0 +1,30 @@
+# ✅ Empêcher l'accès aux fichiers PHP sensibles
+<FilesMatch "^(config\.php|sbcn\.php|database\.php)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# ✅ Bloquer les accès directs aux dossiers sensibles
+Options -Indexes
+
+# ✅ Désactiver l'exécution des scripts PHP dans certains dossiers
+<Directory "/path/to/uploads">
+    RemoveHandler .php .phtml .php3 .php4 .php5 .php7
+    SetHandler default-handler
+</Directory>
+
+# ✅ Protection contre les injections HTTP
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{QUERY_STRING} (\<|%3C|%3E|%3D|union|select|insert|drop|delete|update) [NC]
+    RewriteRule .* - [F]
+</IfModule>
+
+# ✅ Bloquer les robots malveillants
+SetEnvIfNoCase User-Agent "badbot" bad_bot
+Deny from env=bad_bot
+
+# ✅ Rediriger tout vers HTTPS si disponible
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
