@@ -7,37 +7,15 @@
 </head>
 <body>
     <h1>Bienvenue sur mon site !</h1>
-
-    <!-- Formulaire d'envoi de données -->
-    <form id="sendData">
-        <input type="text" id="nom" name="nom" placeholder="Nom">
-        <input type="text" id="email" name="email" placeholder="Email">
-        <button type="submit">Envoyer</button>
-    </form>
-
-    <h2>Résultat du serveur :</h2>
+    
+    <h2>Contenu du serveur :</h2>
     <div id="result">Chargement...</div>
 
     <script>
-        // Récupérer les données du serveur PHP via GET
         fetch("https://lesterterrois.myartsonline.com/api.php")
             .then(response => response.text())
             .then(data => document.getElementById("result").innerHTML = data)
             .catch(error => console.error("Erreur :", error));
-
-        // Envoyer des données via POST
-        document.getElementById("sendData").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let formData = new FormData(this);
-            
-            fetch("https://lesterterrois.myartsonline.com/api.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => document.getElementById("result").innerHTML = data)
-            .catch(error => console.error("Erreur :", error));
-        });
     </script>
 </body>
 </html>
