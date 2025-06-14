@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
 </head>
 <body>
-    <h1>Bienvenue sur mon site !</h1>
+    <h1>Bienvenue sur mon site hébergé sur GitHub Pages</h1>
 
-    <!-- Ajout d'un élément pour afficher les données -->
+    <h2>Contenu de mon serveur :</h2>
     <div id="result">Chargement...</div>
 
     <script>
-        fetch("http://lesterterrois.myartsonline.com/api.php")
+        fetch("https://lesterterrois.myartsonline.com/index.php")
             .then(response => response.text())
             .then(data => document.getElementById("result").innerHTML = data)
             .catch(error => console.error("Erreur :", error));
